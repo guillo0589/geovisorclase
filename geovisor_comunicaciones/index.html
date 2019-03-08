@@ -19,7 +19,7 @@
             height: 579px;
         }
         </style>
-        <title></title>
+        <title>Geovisor Comunicaciones</title>
     </head>
     <body>
         <div id="map">
@@ -46,12 +46,12 @@
 
             if (e.target.feature.geometry.type === 'LineString') {
               highlightLayer.setStyle({
-                color: '#ffff00',
+                color: '#06faf2',
               });
             } else {
               highlightLayer.setStyle({
-                fillColor: '#ffff00',
-                fillOpacity: 1
+                fillColor: '#06faf2',
+                fillOpacity: 0.5
               });
             }
             highlightLayer.openPopup();
@@ -61,7 +61,7 @@
         }).fitBounds([[3.3288569874100404,-76.70948660617486],[3.5344794001673905,-76.3064381679971]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        L.control.locate({locateOptions: {maxZoom: 15}}).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
             primaryLengthUnit: 'meters',
@@ -81,6 +81,12 @@
             opacity: 1.0,
             attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
         });
+        
+                       
+            var wmsLayer = L.tileLayer.wms('http://ws-idesc.cali.gov.co:8081/geoserver/wms?service=WMS&version=1.1.0', {
+    layers: 'idesc:mc_barrios'
+}).addTo(map);
+            
         layer_GoogleRoad_0;
         map.addLayer(layer_GoogleRoad_0);
         function pop_comunas_1(feature, layer) {
